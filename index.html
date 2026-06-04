@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Gilberto & Laura · 12.12.2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;500&family=Jost:wght@200;300;400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="CSS/style.css" />
+</head>
+<body>
+
+<!-- ENVELOPE ANIMATION -->
+  <div id="envelope-screen">
+
+    <!-- Textura de fondo del sobre -->
+    <div class="env-bg-texture"></div>
+
+    <!-- Flap superior (SVG escala al 100%) -->
+    <div class="env-flap-top" id="envFlapTop">
+      <svg viewBox="0 0 100 55" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="0,0 100,0 50,55" fill="rgba(220,216,208,0.11)"/>
+        <polygon points="0,0 100,0 50,55" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="0.3"/>
+      </svg>
+    </div>
+
+    <!-- Flap inferior -->
+    <div class="env-flap-bottom">
+      <svg viewBox="0 0 100 55" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="0,100 100,100 50,45" fill="rgba(180,176,168,0.09)"/>
+      </svg>
+    </div>
+
+    <!-- Flap izquierdo -->
+    <div class="env-flap-left">
+      <svg viewBox="0 0 55 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="0,0 0,100 55,50" fill="rgba(160,156,148,0.07)"/>
+      </svg>
+    </div>
+
+    <!-- Flap derecho -->
+    <div class="env-flap-right">
+      <svg viewBox="0 0 55 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="55,0 55,100 0,50" fill="rgba(160,156,148,0.07)"/>
+      </svg>
+    </div>
+
+    <!-- Contenido frontal del sobre -->
+    <div class="env-front">
+      <p class="env-pre cinzel">te invitamos a nuestra boda</p>
+      <div class="env-names">Gilberto<br/><em>&amp;</em><br/>Laura</div>
+      <p class="env-date cinzel">12 · 12 · 2026</p>
+    </div>
+
+    <!-- Sello de lacre -->
+    <div class="wax-seal" id="waxSeal">
+      <span class="wax-letter">G&L</span>
+    </div>
+
+    <!-- Hint -->
+    <p class="tap-hint cinzel" id="tapHint">Toca para abrir</p>
+
+  </div>
+
+  <!-- INVITATION CONTENT -->
+  <div id="invitation" class="hidden">
+
+    <!-- SECTION 1: HERO -->
+    <section class="section section-hero">
+      <div class="hero-img-wrap">
+        <img src="IMG/img1.jpeg" alt="Gilberto y Laura" class="hero-img" />
+        <div class="hero-overlay"></div>
+      </div>
+      <div class="hero-text">
+        <p class="hero-label cinzel">nos casamos</p>
+        <h1 class="hero-names">Gilberto<br/>&amp;<br/>Laura</h1>
+        <p class="hero-date cinzel">12 de Diciembre · 2026</p>
+      </div>
+    </section>
+
+    <!-- SECTION 2: MESSAGE + TIMER -->
+    <section class="section section-message">
+      <div class="section-inner">
+        <div class="deco-line"></div>
+        <p class="msg-label cinzel">con mucha alegría</p>
+        <p class="msg-text">
+          Dos almas que encontraron en el otro su hogar.<br/>
+          Queremos que seas parte del día más importante de nuestra vida.<br/>
+          Tu presencia hará este momento aún más especial.
+        </p>
+        <div class="deco-diamond">◆</div>
+        <p class="timer-label cinzel">faltan</p>
+        <div class="timer" id="timer">
+          <div class="timer-block"><span class="timer-num" id="t-days">00</span><span class="timer-unit">días</span></div>
+          <div class="timer-sep">:</div>
+          <div class="timer-block"><span class="timer-num" id="t-hours">00</span><span class="timer-unit">horas</span></div>
+          <div class="timer-sep">:</div>
+          <div class="timer-block"><span class="timer-num" id="t-mins">00</span><span class="timer-unit">minutos</span></div>
+          <div class="timer-sep">:</div>
+          <div class="timer-block"><span class="timer-num" id="t-secs">00</span><span class="timer-unit">segundos</span></div>
+        </div>
+        <div class="deco-line"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: VENUE -->
+    <section class="section section-venue">
+      <div class="section-inner">
+        <p class="section-label cinzel">el lugar</p>
+        <h2 class="venue-name">Hacienda<br/>Bugambilias</h2>
+        <div class="schedule">
+          <div class="sched-item">
+            <span class="sched-time cinzel">7:00 pm</span>
+            <span class="sched-desc">Recepción</span>
+          </div>
+          <div class="sched-dot">◆</div>
+          <div class="sched-item">
+            <span class="sched-time cinzel">8:00 pm</span>
+            <span class="sched-desc">Inicio del evento</span>
+          </div>
+        </div>
+        <a href="https://maps.app.goo.gl/iWrpGdDEoJ9iVvPTA" target="_blank" class="map-btn cinzel">
+          <span>Ver ubicación</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- SECTION 4: RSVP -->
+    <section class="section section-rsvp">
+      <div class="section-inner">
+        <p class="section-label cinzel">¿Nos acompañarás?</p>
+        <h2 class="rsvp-title">Confirma tu<br/>asistencia</h2>
+        <div class="rsvp-form" id="rsvpForm">
+          <div class="form-group">
+            <label class="form-label cinzel">Nombre completo</label>
+            <input type="text" id="rsvp-name" class="form-input" placeholder="Tu nombre" />
+          </div>
+          <div class="form-group">
+            <label class="form-label cinzel">Teléfono</label>
+            <input type="tel" id="rsvp-phone" class="form-input" placeholder="+52 81 0000 0000" />
+          </div>
+          <div class="form-group">
+            <label class="form-label cinzel">¿Asistirás?</label>
+            <div class="confirm-btns">
+              <button class="confirm-btn" id="btn-yes" onclick="selectConfirm('yes')">Sí, ahí estaré</button>
+              <button class="confirm-btn" id="btn-no" onclick="selectConfirm('no')">No podré ir</button>
+            </div>
+          </div>
+          <button class="submit-btn cinzel" id="submitBtn" onclick="submitRSVP()">Enviar</button>
+          <p class="form-msg" id="formMsg"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: DRESS CODE -->
+    <section class="section section-dress">
+      <div class="section-inner">
+        <div class="deco-line"></div>
+        <p class="section-label cinzel">código de vestimenta</p>
+        <div class="dress-icon">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1">
+            <path d="M16 4 L24 12 L32 4 L38 10 L30 20 L30 44 L18 44 L18 20 L10 10 Z"/>
+          </svg>
+        </div>
+        <h2 class="dress-title">Formal</h2>
+        <div class="dress-rules">
+          <div class="dress-rule">
+            <span class="rule-icon">◆</span>
+            <span>Vestimenta formal elegante</span>
+          </div>
+          <div class="dress-rule">
+            <span class="rule-icon">◆</span>
+            <span>Evento exclusivo para adultos<br/><em>No niños</em></span>
+          </div>
+          <div class="dress-rule">
+            <span class="rule-icon">◆</span>
+            <span>Ayúdanos a evitar el color blanco,<br/>ese día es solo de la novia</span>
+          </div>
+        </div>
+        <div class="deco-line"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: PHOTO CAROUSEL -->
+    <section class="section section-gallery">
+      <p class="section-label cinzel">nuestra historia</p>
+      <div class="carousel-wrap">
+        <div class="carousel" id="carousel">
+          <div class="carousel-slide"><img src="IMG/img1.jpeg" alt="Foto 1" /></div>
+          <div class="carousel-slide"><img src="IMG/img2.jpeg" alt="Foto 2" /></div>
+          <div class="carousel-slide"><img src="IMG/img3.jpeg" alt="Foto 3" /></div>
+          <div class="carousel-slide"><img src="IMG/img4.jpeg" alt="Foto 4" /></div>
+        </div>
+        <button class="car-btn car-prev" onclick="carouselMove(-1)">&#8592;</button>
+        <button class="car-btn car-next" onclick="carouselMove(1)">&#8594;</button>
+        <div class="car-dots" id="carDots"></div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <p class="cinzel">Gilberto &amp; Laura</p>
+      <p class="footer-date">12 · 12 · 2026</p>
+    </footer>
+
+  </div><!-- /invitation -->
+
+  <script src="JS/script.js"></script>
+</body>
+</html>
