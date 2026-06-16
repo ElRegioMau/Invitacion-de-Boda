@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>Pablo & Camila · 15.10.2026 · Lavanda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --dark:#1a1525;
+  --darker:#110e18;
+  --lavender:#9b7ebd;
+  --lilac:#d4c5e2;
+  --gold:#d4af37;
+  --gold-light:#e8d38a;
+  --text-main:#f4f1f8;
+  --text-muted:#a89fb8;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Montserrat',sans-serif;background:var(--dark);color:var(--text-main);overflow-x:hidden}
+.hidden{display:none!important}
+
+/* CUSTOM SCROLLBAR */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--darker); }
+::-webkit-scrollbar-thumb { background: var(--lavender); border-radius: 3px; }
+
+/* PARTICLES (Stars/Dust) */
+#particles{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.6}
+.particle{
+  position:absolute;background:var(--gold-light);border-radius:50%;
+  animation:float linear infinite;
+}
+@keyframes float{
+  0%{transform:translateY(0) scale(0.5);opacity:0}
+  50%{opacity:1;transform:scale(1.2)}
+  100%{transform:translateY(-100vh) scale(0.5);opacity:0}
+}
+
+/* INTRO SCREEN */
+#intro{
+  position:fixed;inset:0;z-index:1000;
+  background:radial-gradient(circle at center, var(--dark) 0%, var(--darker) 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  cursor:pointer;overflow:hidden;
+}
+.intro-ring{
+  position:absolute;width:280px;height:280px;border-radius:50%;
+  border:1px dashed rgba(212,175,55,0.3);
+  animation:spin 30s linear infinite;
+}
+.intro-ring::before{
+  content:'';position:absolute;inset:10px;border-radius:50%;
+  border:1px solid rgba(155,126,189,0.2);
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.intro-content{position:relative;z-index:2;text-align:center}
+.intro-pre{font-size:9px;letter-spacing:6px;color:var(--lilac);text-transform:uppercase;margin-bottom:16px}
+.intro-names{font-family:'Alex Brush',cursive;font-size:clamp(50px,12vw,64px);color:var(--gold-light);line-height:1;text-shadow:0 0 20px rgba(212,175,55,0.2)}
+.intro-date{font-size:10px;letter-spacing:5px;color:var(--text-muted);margin-top:20px;text-transform:uppercase}
+.intro-hint{
+  position:absolute;bottom:10%;font-size:9px;letter-spacing:4px;
+  color:var(--lavender);text-transform:uppercase;
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:0.4;transform:translateY(0)}50%{opacity:1;transform:translateY(-5px)}}
+#intro.closing{animation:fadeSlideUp 0.8s cubic-bezier(0.4,0,0.2,1) forwards}
+@keyframes fadeSlideUp{to{opacity:0;transform:translateY(-50px);pointer-events:none}}
+
+/* MAIN INVITATION WRAPPER */
+#invitation{position:relative;z-index:1}
+
+/* HERO SECTION */
+.hero{
+  height:100svh;min-height:600px;display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.hero-img-container{
+  position:absolute;inset:0;
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
+}
+.hero-img-container img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom, rgba(26,21,37,0.2) 0%, rgba(26,21,37,0.6) 50%, var(--dark) 100%);
+}
+.hero-text{
+  position:relative;z-index:2;text-align:center;padding:0 20px;
+  margin-top:20vh;
+}
+.hero-names{
+  font-family:'Alex Brush',cursive;font-size:clamp(64px,18vw,90px);
+  color:var(--text-main);line-height:0.9;
+  text-shadow:2px 2px 4px rgba(0,0,0,0.5);
+}
+.hero-amp{font-size:0.6em;color:var(--gold);display:inline-block;margin:0 10px;font-family:'Montserrat',sans-serif;font-weight:200}
+.hero-date{
+  margin-top:20px;font-size:11px;letter-spacing:8px;
+  color:var(--gold-light);text-transform:uppercase;
+  display:flex;align-items:center;justify-content:center;gap:15px;
+}
+.hero-date::before,.hero-date::after{content:'';width:30px;height:1px;background:var(--lavender)}
+
+/* SECTIONS */
+.section{padding:80px 24px;position:relative}
+.section-header{text-align:center;margin-bottom:40px}
+.sec-title{
+  font-family:'Alex Brush',cursive;font-size:clamp(36px,9vw,48px);
+  color:var(--gold);margin-bottom:10px;
+}
+.sec-sub{
+  font-size:9px;letter-spacing:5px;color:var(--lilac);
+  text-transform:uppercase;display:block;
+}
+
+/* OVERLAPPING CARDS STYLE */
+.card-stack{
+  max-width:400px;margin:0 auto;position:relative;
+  padding-bottom:20px;
+}
+.card{
+  background:var(--darker);
+  border:1px solid rgba(155,126,189,0.3);
+  padding:40px 30px;text-align:center;
+  box-shadow:0 15px 35px rgba(0,0,0,0.5);
+  position:relative;z-index:2;
+}
+.card::before{
+  content:'';position:absolute;top:-10px;left:10px;right:-10px;bottom:10px;
+  border:1px solid rgba(212,175,55,0.3);z-index:-1;
+}
+
+/* MESSAGE */
+.msg-text{
+  font-size:14px;font-weight:300;color:var(--text-muted);
+  line-height:1.8;
+}
+.msg-highlight{
+  font-family:'Alex Brush',cursive;font-size:24px;
+  color:var(--lilac);display:block;margin:20px 0;
+}
+
+/* COUNTDOWN */
+.timer-container{
+  margin-top:40px;display:flex;justify-content:center;gap:15px;
+}
+.t-box{
+  display:flex;flex-direction:column;align-items:center;
+  background:rgba(155,126,189,0.05);border:1px solid rgba(155,126,189,0.2);
+  width:65px;height:75px;justify-content:center;
+  border-radius:8px 24px 8px 24px; /* Boho asymmetric shape */
+}
+.t-num{font-family:'Montserrat',sans-serif;font-size:28px;font-weight:200;color:var(--gold-light)}
+.t-unit{font-size:8px;letter-spacing:2px;color:var(--lavender);text-transform:uppercase;margin-top:2px}
+
+/* GALLERY - HORIZONTAL SCROLL */
+.section-gallery{padding-left:0;padding-right:0;overflow:hidden}
+.gallery-scroll{
+  display:flex;gap:20px;padding:0 24px;
+  overflow-x:auto;scroll-snap-type:x mandatory;
+  scrollbar-width:none; /* Firefox */
+}
+.gallery-scroll::-webkit-scrollbar{display:none} /* Chrome */
+.g-item{
+  flex:0 0 85%;max-width:320px;scroll-snap-align:center;
+  position:relative;height:450px;
+  border-radius:120px 120px 0 0; /* Arch shape */
+  overflow:hidden;
+  border:2px solid rgba(155,126,189,0.2);
+}
+.g-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease}
+.g-item:hover img{transform:scale(1.05)}
+
+/* VENUE */
+.venue-details{margin-top:30px}
+.v-name{font-family:'Montserrat',sans-serif;font-size:20px;font-weight:400;color:var(--text-main);margin-bottom:15px;letter-spacing:2px}
+.sched-list{display:flex;flex-direction:column;gap:15px;margin:30px 0}
+.s-item{display:flex;align-items:center;justify-content:center;gap:15px}
+.s-time{font-family:'Montserrat',sans-serif;font-weight:500;font-size:16px;color:var(--gold);width:70px;text-align:right}
+.s-sep{width:4px;height:4px;background:var(--lavender);border-radius:50%;transform:rotate(45deg)}
+.s-desc{font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px;width:120px;text-align:left}
+.btn{
+  display:inline-block;padding:14px 35px;
+  background:transparent;border:1px solid var(--gold);
+  color:var(--gold-light);text-decoration:none;font-size:10px;
+  letter-spacing:4px;text-transform:uppercase;transition:all 0.3s;
+  border-radius:30px;
+}
+.btn:hover{background:rgba(212,175,55,0.1);box-shadow:0 0 15px rgba(212,175,55,0.2)}
+
+/* RSVP */
+.section-rsvp{background:linear-gradient(to bottom, var(--dark) 0%, var(--darker) 100%)}
+.form-wrap{
+  background:rgba(255,255,255,0.02);padding:30px 20px;
+  border-radius:15px;border:1px solid rgba(255,255,255,0.05);
+}
+.f-group{margin-bottom:25px;text-align:left}
+.f-label{display:block;font-size:9px;letter-spacing:3px;color:var(--lilac);text-transform:uppercase;margin-bottom:8px}
+.f-input{
+  width:100%;background:rgba(0,0,0,0.2);border:none;
+  border-bottom:1px solid var(--lavender);
+  padding:12px 10px;color:var(--text-main);
+  font-family:'Montserrat',sans-serif;font-size:14px;
+  outline:none;transition:0.3s;
+}
+.f-input:focus{border-bottom-color:var(--gold);background:rgba(0,0,0,0.4)}
+.radio-group{display:flex;gap:10px}
+.radio-btn{
+  flex:1;padding:12px 0;background:rgba(0,0,0,0.3);
+  border:1px solid rgba(155,126,189,0.3);color:var(--text-muted);
+  font-family:'Montserrat',sans-serif;font-size:12px;
+  text-align:center;cursor:pointer;transition:0.3s;
+  border-radius:5px;
+}
+.radio-btn.active{background:rgba(155,126,189,0.2);border-color:var(--lavender);color:var(--text-main)}
+.submit-btn{
+  width:100%;padding:15px;background:var(--lavender);
+  border:none;color:var(--darker);font-family:'Montserrat',sans-serif;
+  font-size:11px;font-weight:500;letter-spacing:3px;
+  text-transform:uppercase;cursor:pointer;transition:0.3s;
+  border-radius:30px;margin-top:10px;
+}
+.submit-btn:hover{background:var(--lilac);box-shadow:0 0 20px rgba(155,126,189,0.4)}
+.f-msg{margin-top:20px;font-family:'Alex Brush',cursive;font-size:22px;color:var(--gold);text-align:center;min-height:30px}
+
+/* DRESS CODE */
+.dress-icons{display:flex;justify-content:center;gap:30px;margin-bottom:30px}
+.d-icon{
+  width:60px;height:60px;border-radius:50%;
+  border:1px dashed var(--lavender);
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;
+}
+.dress-text{font-size:13px;color:var(--text-muted);line-height:1.8;max-width:300px;margin:0 auto}
+
+/* FOOTER */
+footer{
+  padding:60px 24px;text-align:center;
+  background:var(--darker);
+  border-top:1px solid rgba(255,255,255,0.05);
+}
+.f-names{font-family:'Alex Brush',cursive;font-size:32px;color:var(--lilac)}
+.f-date{font-size:10px;letter-spacing:5px;color:rgba(168,159,184,0.5);margin-top:15px;text-transform:uppercase}
+
+/* AUDIO BTN */
+#audioBtn{
+  position:fixed;bottom:25px;right:25px;z-index:500;
+  width:45px;height:45px;border-radius:50%;
+  background:rgba(26,21,37,0.8);border:1px solid var(--gold);
+  color:var(--gold-light);font-size:16px;cursor:pointer;
+  display:none;align-items:center;justify-content:center;
+  backdrop-filter:blur(5px);transition:0.3s;
+}
+#audioBtn:hover{transform:rotate(15deg) scale(1.1)}
+
+/* REVEAL ANIMATIONS */
+.reveal{opacity:0;transform:translateY(30px);transition:all 1s cubic-bezier(0.2,0,0,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay{transition-delay:0.2s}
+</style>
+</head>
+<body>
+
+<!-- PARTICLES -->
+<div id="particles"></div>
+
+<!-- INTRO -->
+<div id="intro">
+  <div class="intro-ring"></div>
+  <div class="intro-content">
+    <p class="intro-pre">Nuestra Boda</p>
+    <div class="intro-names">Pablo & Camila</div>
+    <p class="intro-date">15 · Octubre · 2026</p>
+  </div>
+  <p class="intro-hint">Descubrir</p>
+</div>
+
+<!-- INVITATION -->
+<div id="invitation" class="hidden">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-img-container">
+      <img src="../../IMG/img1.jpeg" alt="Pablo y Camila"/>
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-text">
+      <h1 class="hero-names">Pablo<br/><span class="hero-amp">&</span><br/>Camila</h1>
+      <p class="hero-date">15.10.2026</p>
+    </div>
+  </section>
+
+  <!-- MESSAGE -->
+  <section class="section">
+    <div class="section-header reveal">
+      <span class="sec-sub">Con amor</span>
+      <h2 class="sec-title">Celebra con nosotros</h2>
+    </div>
+    <div class="card-stack reveal reveal-delay">
+      <div class="card">
+        <p class="msg-text">
+          Bajo el cielo estrellado y con el corazón lleno de ilusión, queremos unir nuestras vidas.
+        </p>
+        <span class="msg-highlight">Te invitamos a ser parte</span>
+        <p class="msg-text">
+          de este capítulo mágico en nuestra historia, donde cada momento será inolvidable porque tú estarás ahí.
+        </p>
+        
+        <!-- TIMER -->
+        <div class="timer-container">
+          <div class="t-box"><span class="t-num" id="t-days">00</span><span class="t-unit">Días</span></div>
+          <div class="t-box"><span class="t-num" id="t-hours">00</span><span class="t-unit">Hrs</span></div>
+          <div class="t-box"><span class="t-num" id="t-mins">00</span><span class="t-unit">Min</span></div>
+          <div class="t-box"><span class="t-num" id="t-secs">00</span><span class="t-unit">Seg</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="section section-gallery">
+    <div class="section-header reveal">
+      <span class="sec-sub">Memorias</span>
+      <h2 class="sec-title">Nuestra Historia</h2>
+    </div>
+    <div class="gallery-scroll reveal">
+      <div class="g-item"><img src="../../IMG/img2.jpeg" alt=""/></div>
+      <div class="g-item"><img src="../../IMG/img3.jpeg" alt=""/></div>
+      <div class="g-item"><img src="../../IMG/img4.jpeg" alt=""/></div>
+      <div class="g-item"><img src="../../IMG/img1.jpeg" alt=""/></div>
+    </div>
+  </section>
+
+  <!-- VENUE -->
+  <section class="section">
+    <div class="section-header reveal">
+      <span class="sec-sub">Dónde & Cuándo</span>
+      <h2 class="sec-title">El Lugar Mágico</h2>
+    </div>
+    <div class="card-stack reveal reveal-delay">
+      <div class="card venue-details">
+        <h3 class="v-name">Hacienda Bugambilias</h3>
+        <p class="msg-text" style="font-size:12px">Un espacio lleno de encanto y naturaleza.</p>
+        
+        <div class="sched-list">
+          <div class="s-item">
+            <span class="s-time">19:00</span>
+            <div class="s-sep"></div>
+            <span class="s-desc">Recepción</span>
+          </div>
+          <div class="s-item">
+            <span class="s-time">20:00</span>
+            <div class="s-sep"></div>
+            <span class="s-desc">Ceremonia & Fiesta</span>
+          </div>
+        </div>
+        
+        <a href="https://maps.app.goo.gl/iWrpGdDEoJ9iVvPTA" target="_blank" class="btn">Abrir Mapa</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section class="section section-rsvp">
+    <div class="section-header reveal">
+      <span class="sec-sub">Acompáñanos</span>
+      <h2 class="sec-title">Confirma tu Asistencia</h2>
+    </div>
+    <div style="max-width:350px;margin:0 auto" class="reveal reveal-delay">
+      <div class="form-wrap">
+        <div class="f-group">
+          <label class="f-label">Nombre Completo</label>
+          <input type="text" id="r-name" class="f-input" placeholder="Escribe tu nombre"/>
+        </div>
+        <div class="f-group">
+          <label class="f-label">Teléfono</label>
+          <input type="tel" id="r-phone" class="f-input" placeholder="Tu número"/>
+        </div>
+        <div class="f-group">
+          <label class="f-label">¿Nos acompañarás?</label>
+          <div class="radio-group">
+            <div class="radio-btn" id="btn-y" onclick="setAttending('yes')">Sí, claro</div>
+            <div class="radio-btn" id="btn-n" onclick="setAttending('no')">No podré</div>
+          </div>
+        </div>
+        <button class="submit-btn" onclick="sendRsvp()">Enviar Confirmación</button>
+        <div class="f-msg" id="f-msg"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DRESS CODE -->
+  <section class="section">
+    <div class="section-header reveal">
+      <span class="sec-sub">Estilo</span>
+      <h2 class="sec-title">Código de Vestimenta</h2>
+    </div>
+    <div class="card-stack reveal reveal-delay">
+      <div class="card">
+        <div class="dress-icons">
+          <div class="d-icon">✨</div>
+          <div class="d-icon">🌙</div>
+        </div>
+        <h3 class="v-name">Formal Noche</h3>
+        <p class="dress-text">
+          Te sugerimos colores oscuros o tonos joya.<br/><br/>
+          <em>Evento exclusivo para adultos.</em><br/>
+          Por favor, evita el color blanco.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="f-names">Pablo & Camila</div>
+    <p class="f-date">15 · Octubre · 2026</p>
+  </footer>
+
+</div>
+
+<button id="audioBtn" title="Reproducir/Pausar Música">♪</button>
+
+<script>
+// PARTICLES
+function createParticles(){
+  const pContainer = document.getElementById('particles');
+  for(let i=0; i<30; i++){
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random()*3 + 1;
+    p.style.width = size+'px';
+    p.style.height = size+'px';
+    p.style.left = Math.random()*100 + 'vw';
+    p.style.top = Math.random()*100 + 'vh';
+    p.style.animationDuration = (Math.random()*10 + 5) + 's';
+    p.style.animationDelay = Math.random()*5 + 's';
+    pContainer.appendChild(p);
+  }
+}
+createParticles();
+
+// AUDIO
+const audio = new Audio('../../SOUND/audio.mp3');
+audio.loop = true; audio.volume = 0.5;
+let isPlaying = false;
+const audioBtn = document.getElementById('audioBtn');
+audioBtn.onclick = () => {
+  if(isPlaying){ audio.pause(); audioBtn.innerHTML = '♪'; }
+  else{ audio.play(); audioBtn.innerHTML = '||'; }
+  isPlaying = !isPlaying;
+};
+
+// INTRO
+const intro = document.getElementById('intro');
+const invitation = document.getElementById('invitation');
+let isOpened = false;
+intro.onclick = () => {
+  if(isOpened) return;
+  isOpened = true;
+  intro.classList.add('closing');
+  audio.play().catch(()=>{});
+  isPlaying = true;
+  audioBtn.innerHTML = '||';
+  setTimeout(()=>{
+    intro.style.display = 'none';
+    invitation.classList.remove('hidden');
+    audioBtn.style.display = 'flex';
+    initReveals();
+    startCountdown();
+  }, 800);
+};
+
+// COUNTDOWN
+function startCountdown(){
+  const weddingDate = new Date('2026-10-15T19:00:00').getTime();
+  const tick = () => {
+    const now = new Date().getTime();
+    const dist = weddingDate - now;
+    if(dist < 0) return;
+    document.getElementById('t-days').innerText = String(Math.floor(dist / (1000 * 60 * 60 * 24))).padStart(2,'0');
+    document.getElementById('t-hours').innerText = String(Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2,'0');
+    document.getElementById('t-mins').innerText = String(Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60))).padStart(2,'0');
+    document.getElementById('t-secs').innerText = String(Math.floor((dist % (1000 * 60)) / 1000)).padStart(2,'0');
+  };
+  tick(); setInterval(tick, 1000);
+}
+
+// REVEAL ON SCROLL
+function initReveals(){
+  const elements = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  elements.forEach(el => observer.observe(el));
+}
+
+// RSVP DEMO
+let attending = null;
+function setAttending(val){
+  attending = val;
+  document.getElementById('btn-y').classList.toggle('active', val === 'yes');
+  document.getElementById('btn-n').classList.toggle('active', val === 'no');
+}
+function sendRsvp(){
+  const name = document.getElementById('r-name').value.trim();
+  const phone = document.getElementById('r-phone').value.trim();
+  const msg = document.getElementById('f-msg');
+  
+  if(!name){ msg.innerText = 'Falta tu nombre'; return; }
+  if(!phone){ msg.innerText = 'Falta tu teléfono'; return; }
+  if(!attending){ msg.innerText = 'Selecciona una opción'; return; }
+  
+  if(attending === 'yes'){
+    msg.innerText = '¡Qué emoción, te esperamos!';
+  } else {
+    msg.innerText = 'Te extrañaremos mucho.';
+  }
+  
+  document.getElementById('r-name').value = '';
+  document.getElementById('r-phone').value = '';
+  setAttending(null);
+}
+</script>
+</body>
+</html>
